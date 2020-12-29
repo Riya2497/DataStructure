@@ -1,0 +1,37 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ 
+ void diagonalT(TreeNode* A, int d, map<int, vector<int>> &mp){
+        
+    if(A == NULL) return;
+    
+    mp[d].push_back(A->val);
+    
+    diagonalT(A->left, d+1, mp);
+    diagonalT(A->right, d, mp);
+ }
+ 
+vector<int> Solution::solve(TreeNode* A) {
+    
+    if(A == NULL) return {};
+    map<int, vector<int>> mp;
+    int d = 0;
+    diagonalT(A, d, mp);
+    
+    vector<int> ans;
+    
+    for(auto it : mp){
+        
+        for(int value : it.second) ans.push_back(value);
+    }
+    
+    return ans;
+    
+}
