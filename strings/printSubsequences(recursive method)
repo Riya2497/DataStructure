@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+void printSubsequence(string ip, string op){
+    
+    if(ip.size() == 0){
+        cout<<op<<" ";
+        return;
+    }
+    
+    string op1 = op;
+    string op2 = op;
+    
+    op2.push_back(ip[0]);
+    ip.erase(ip.begin());
+    
+    printSubsequence(ip, op2);
+    printSubsequence(ip, op1);
+}
+int main() {
+	
+	string str;
+	
+	cin>>str;
+	
+	string op = "";
+	
+	printSubsequence(str, op);
+	
+	return 0;
+}
